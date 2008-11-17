@@ -15,7 +15,7 @@ SeismicU::SeismicU(QWidget *parent)
     connect(convertButton, SIGNAL(clicked()),
             this, SLOT(runScript()));
 //  connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-    connect(&process, SIGNAL(readyReadStandardOutput()),
+    connect(&process, SIGNAL(readyReadStandardError()),
             this, SLOT(updateOutputTextEdit()));
     connect(&process, SIGNAL(finished(int, QProcess::ExitStatus)),
             this, SLOT(processFinished(int, QProcess::ExitStatus)));
@@ -33,7 +33,7 @@ void SeismicU::runScript()
 	// I just added this line to test some things 
 	QTextStream out(&file);
 	out << "#!/bin/bash\n";
-	out << "echo Thunder" << endl;
+	out << "/opt/SU/src/demos/Synthetic/Finite_Difference/Sufdmod2/XDemo3" << endl;
 
     QStringList args;
 	args << "script.txt";
@@ -49,8 +49,8 @@ void SeismicU::runScript()
 	process.setEnvironment(env);
 	env << "CWPROOT=/opt/SU"; 
 	env << "PATH=$PATH:/opt/SU/bin"; 
+//	process.start("sh", args);
 	process.start("sh", args);
-	// process.start("/Users/Naix/Tmp/viper-sugui/script.sh");
 //	process.start("/opt/SU/src/demos/Synthetic/Finite_Difference/Sufdmod2/XDemo3");
 }
 
@@ -77,7 +77,7 @@ void SeismicU::processError(QProcess::ProcessError error)
 
 void SeismicU::updateOutputTextEdit()
 {
-    QByteArray newData = process.readAllStandardOutput();
+    QByteArray newData = process.readAllStandardError();
     QString text = outputTextEdit->toPlainText()
                    + QString::fromLocal8Bit(newData);
     outputTextEdit->setPlainText(text);
