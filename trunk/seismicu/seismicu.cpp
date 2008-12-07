@@ -31,7 +31,7 @@ void SeismicU::runScript()
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return;
 
-    QString text = lineEdit->text();
+    QString text = spinBox->text();
 
     QTextStream out(&file);
     out << "# /bin/sh                                                                               " << endl;
@@ -48,7 +48,7 @@ void SeismicU::runScript()
     out << "n1=100 d1=5 f1=0.0 label1=\"Depth (km)\"                                                " << endl;
     out << "n2=100 d2=5 f2=0.0 label2=\"Distance (km)\"                                             " << endl;
 
-    out << qPrintable(QString("xs=%1 zs=%2 hsz=50 vsx=250 verbose=2 ").arg(lineEdit->text()).arg(lineEdit->text())) << endl;
+    out << qPrintable(QString("xs=%1 zs=%2 hsz=50 vsx=250 verbose=2 ").arg(spinBox->text()).arg(spinBox_2->text())) << endl;
 
     out << "vsfile=\"vseis.out\" ssfile=\"sseis.out\" hsfile=\"hseis.out\"                          " << endl;
     out << "tmax=.4 mt=5 fpeak=35 fmax=40                                                           " << endl;
