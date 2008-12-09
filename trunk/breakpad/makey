@@ -1,0 +1,21 @@
+CXX=g++
+
+CXXFLAGS=-gstabs -I../../.. -Wall -D_REENTRANT
+LDFLAGS=-lpthread -L$(CURDIR) -lexception_handler
+
+TARGET=simpleCrashBreakpad
+OBJS=simpleCrashBreakpad.o
+
+.PHONY: all clean symbols
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
+clean:
+	rm -f $(TARGET) *.o
+
+symbols:
+	python symbolstore.py bin/dump_syms symbols $(TARGET)
+	strip $(TARGET)
