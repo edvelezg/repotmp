@@ -1,6 +1,13 @@
 #include <QtGui>
 #include "seismicu.h"
 
+// 
+//  seismicu.cpp
+//  seismicu
+//  
+//  Created by Eduardo Gutarra on 2008-12-08.
+//  Copyright 2008
+
 SeismicU::SeismicU(QWidget *parent)
   : QDialog(parent)
 {
