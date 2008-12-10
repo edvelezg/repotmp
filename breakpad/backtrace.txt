@@ -1,0 +1,44 @@
+Program received signal SIGSEGV, Segmentation fault.
+[Switching to Thread -1211390272 (LWP 21675)]
+0x08049712 in callMe () at simpleCrashBreakpad.cpp:28
+28        *foo = 42;
+(gdb) n
+google_breakpad::ExceptionHandler::HandleException (signo=11)
+    at exception_handler.cc:176
+176     void ExceptionHandler::HandleException(int signo) {
+(gdb) n
+186       uintptr_t current_ebp = 0;
+(gdb) n
+188                     :"=m"(current_ebp));
+(gdb) n
+190       pthread_mutex_lock(&handler_stack_mutex_);
+(gdb) n
+192         handler_stack_->at(handler_stack_->size() - ++handler_stack_index_);(gdb) n
+193       pthread_mutex_unlock(&handler_stack_mutex_);
+(gdb) n
+196       current_handler->TeardownHandler(signo);
+(gdb) n
+198       struct sigcontext *sig_ctx = NULL;
+(gdb) n
+199       if (current_handler->InternalWriteMinidump(signo, current_ebp, &sig_ctx)) {
+(gdb) n
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+4f0ea72b-32b4-430b-116b85e9-7bd07d8e is dumped
+[New Thread -1211390272 (LWP -1)]
+Can't attach LWP -1: No such process
+(gdb) n
+Couldn't get registers: No such process.
+(gdb) n
+Couldn't get registers: No such process.
+(gdb) n
+Couldn't get registers: No such process.
+(gdb) n
+Couldn't get registers: No such process.
+(gdb)
+
