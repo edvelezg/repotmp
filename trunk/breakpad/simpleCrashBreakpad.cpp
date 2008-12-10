@@ -12,6 +12,13 @@ static bool MinidumpCallback(const char *dump_path,
                              void *context,
                              bool succeeded) {
   printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
+  printf("%s is dumped\n", minidump_id);
  
   return succeeded;
 }
