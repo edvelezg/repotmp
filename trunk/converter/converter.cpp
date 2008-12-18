@@ -128,6 +128,6 @@ void Convert(const string & Infix, string & Postfix)
     while (! OperatorStack.empty()) {
         TopSymbol = OperatorStack.top();
         OperatorStack.pop();
-        Postfix = Postfix + topsymbol;
+        Postfix = Postfix + TopSymbol;
     }
 }
